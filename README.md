@@ -28,7 +28,6 @@ Proje, sorumlulukların ayrılması (Separation of Concerns) kuralına sadık ka
 *   `models/`: Veri kalıplarını oluşturan temel ve türetilmiş sınıflar (`Kisi`, `Uye`, `StandartUye`, `VIPUye`, `Egitmen`). 
 *   `services/`: Verilerin saklandığı, ArrayList yönetiminin, kontrollerin ve ana iş mantığının yürütüldüğü merkez sınıf (`SporSalonuManager`).
 *   `interfaces/`: Ortak eylem şablonlarının belirlendiği arayüzler (`IAntrenmanYapilabilir`).
-*   `utils/`: Sistemin her parçasında veri taşıyabilen bağımsız yardımcı yapılar (Jenerik sınıflar).
 *   `Main.java`: Kullanıcıyla etkileşimi (Scanner) ve sonsuz döngü ana menüsünü barındıran vitrin sınıfı.
 
 ## ⚙️ Nasıl Çalıştırılır?
