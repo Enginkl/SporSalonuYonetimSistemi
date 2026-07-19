@@ -26,4 +26,10 @@ public class Egitmen extends Kisi{
         return sorumluOlduguKisiSayisi;
     }
 
+    public void ogrenciSil() {
+        if (this.sorumluOlduguKisiSayisi > 0) {
+            this.sorumluOlduguKisiSayisi--; // Öğrenci silindiği için hocanın sayısını 1 azaltıyoruz (yer açılıyor)
+        }
+    }
+
 }

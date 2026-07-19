@@ -18,12 +18,16 @@ public class SporSalonuManager {
     private int sonrakiEgitmenId = 101;
 
     public SporSalonuManager() {
+        this(new Scanner(System.in));
+    }
+
+    public SporSalonuManager(Scanner scanner) {
         this.uyeler = new ArrayList<>();
         this.egitmenler = new ArrayList<>();
 
         this.currentYear = 2026;
+        this.scanner = scanner;
 
-        scanner = new Scanner(System.in);
         varsayilanVerileriYukle();
     }
 
@@ -75,7 +79,7 @@ public class SporSalonuManager {
             System.out.println("Ozel Hocalar:");
             for(int i=0;i<egitmenler.size();i++){
                 Egitmen hoca = egitmenler.get(i);
-                System.out.println((i+1) + "- " + hoca.getIsim() + " (Kontenjan: " + hoca.getSorumluOlduguKisiSayisi() + "/5)");
+                System.out.println((i+1) + "- " + hoca.getIsim() + " (Kontenjan: " + (5 - hoca.getSorumluOlduguKisiSayisi()) + "/5)");
             }
             System.out.println("Lutfen atamak istediginiz ozel hocayi secin: ");
             int hocaSecim = scanner.nextInt();
@@ -115,12 +119,21 @@ public class SporSalonuManager {
 
     public void uyeSil(int id){
         for(int i=0;i<uyeler.size();i++){
-            if(uyeler.get(i).getId() == id){
-                System.out.println("[SILINDI] " + uyeler.get(i).getIsim() + " sistemden cikarildi.");
+            Uye uye = uyeler.get(i);
+            if(uye.getId() == id){
+                if(uye instanceof VIPUye){
+                    VIPUye silinecekVip = (VIPUye) uye;
+                    Egitmen ozelHoca = silinecekVip.getOzelHoca();
+                    if(ozelHoca != null){
+                        ozelHoca.ogrenciSil();
+                    }
+                }
+                System.out.println("[SILINDI] " + uye.getIsim() + " sistemden cikarildi.");
                 uyeler.remove(i);
                 return;
             }
         }
+        System.out.println("[HATA] " + id + " numarali uye bulunamadi.");
     }
 
     public void tumUyeleriListele(){

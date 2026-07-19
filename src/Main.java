@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        SporSalonuManager manager = new SporSalonuManager();
         Scanner scanner = new Scanner(System.in);
+        SporSalonuManager manager = new SporSalonuManager(scanner);
         int secim = -1;
 
         System.out.println("--- Vücut Geliştirme ve Spor Salonu Yönetim Sistemine Hoş Geldiniz ---");
@@ -38,6 +38,7 @@ public class Main {
                     case 3:
                         System.out.print("Sistemden silinecek üyenin ID numarasını girin: ");
                         int silinecekId = scanner.nextInt();
+                        scanner.nextLine();
                         manager.uyeSil(silinecekId);
                         break;
                     case 4:
